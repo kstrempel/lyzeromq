@@ -8,5 +8,4 @@
       (while (not (.. Thread currentThread isInterrupted))
         (let [reply (zmq/receive socket)]
           (println "Received Hello")
-          (Thread/sleep 1000)
           (zmq/send-str socket "World"))))))

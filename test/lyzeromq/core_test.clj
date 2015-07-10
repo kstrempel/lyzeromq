@@ -8,6 +8,8 @@
 
 (deftest push-pull-test
   (with-open [socket (doto (zmq/socket context :req)
-                     (zmq/connect "tcp://127.0.0.1:5555"))]
-    (zmq/send-str socket "hello")
-    (println (zmq/receive-str socket))))
+                       (zmq/connect "tcp://127.0.0.1:5555"))]
+    (dotimes [n 10]
+      (do
+        (zmq/send-str socket "hello")
+        (println (zmq/receive-str socket))))))
